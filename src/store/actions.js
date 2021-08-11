@@ -8,7 +8,7 @@ export const getSavePokemon = ({commit}) => {
 }
 
 // Retorna el pokemon aleatorio
-export const setPokemon = async ({commit, state}) => {
+export const getPokemon = async ({commit, state}) => {
   try {
     const savePokemon = state.savePokemon
     let pokemon, flag = true
@@ -21,7 +21,7 @@ export const setPokemon = async ({commit, state}) => {
         flag = false
       }
     }
-    commit('setPokemon', pokemon)
+    commit('setActualPokemon', pokemon)
   } catch(error) {
     console.log(error)
   }
@@ -33,5 +33,5 @@ export const setSavePokemon = ({commit,state}) => {
   const updateSavePokemon = state.savePokemon
   updateSavePokemon.push(actualPokemon)
   commit("setSavePokemon", updateSavePokemon)
-  setPokemon()
+  localStorage.setItem('savePokemon', updateSavePokemon);
 }

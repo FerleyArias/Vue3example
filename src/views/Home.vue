@@ -1,13 +1,13 @@
 <template>
   <div>
-    <Card :pokemon="pokemon"/>
+    <Card v-if="actualPokemon" :pokemon="actualPokemon" :onOtherPokemon="getPokemon" :onSave="savePokemon"/>
   </div>
 </template>
 
 <script>
 import Card from '@/components/PokemonCard.vue'
 import {useStore} from 'vuex'
-import {computed} from 'vue'
+import {computed, onMounted} from 'vue'
 export default {
   title: 'Pokemon aleatorio',
   components: {
@@ -15,9 +15,19 @@ export default {
   },
   setup(){
     const store = useStore()
-    const pokemon = computed(()=>store.state.actualPokemon)
+    const actualPokemon = computed(()=>store.state.actualPokemon)
+    const getPokemon = () => store.dispatch("getPokemon");
+    const savePokemon = () => {
+      store.dispatch("setSavePokemon")
+      getPokemon()
+    };
+    onMounted(()=> {
+      getPokemon()
+    })
     return {
-      pokemon
+      actualPokemon,
+      getPokemon,
+      savePokemon
     }
   }
 }
