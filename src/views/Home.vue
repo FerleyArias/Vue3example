@@ -1,18 +1,24 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <Card :pokemon="pokemon"/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import Card from '@/components/PokemonCard.vue'
+import {useStore} from 'vuex'
+import {computed} from 'vue'
 export default {
-  name: 'Home',
+  title: 'Pokemon aleatorio',
   components: {
-    HelloWorld
+    Card
+  },
+  setup(){
+    const store = useStore()
+    const pokemon = computed(()=>store.state.actualPokemon)
+    return {
+      pokemon
+    }
   }
 }
 </script>
