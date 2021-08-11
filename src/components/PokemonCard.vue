@@ -1,21 +1,29 @@
 <template>
-  <div class="card justify-content-center align-items-center" style="width: 18rem;">
-  <img src="../assets/logo.png" id="pokemon" class="card-img-top" alt="Pokemon">
-  <div class="card-body">
-    <h5 class="card-title text-center">Card title</h5>
-    <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  <div class="card mx-auto" style="width: 18rem;">
+    <img :src="pokemon.thumbnail" class="card-img-top m-auto w-75 p-3" alt="Pokemon">
+    <div class="card-body">
+      <h5 class="card-title">{{pokemon.name.english}}</h5>
+      <p class="card-text">{{pokemon.description}}</p>
+    </div>
+    <div class="card-body d-flex justify-content-between">
+      <button @click="onSave" class="btn btn-success">Guardar</button>
+      <button @click="onOtherPokemon" class="btn btn-primary">Siguiente</button>
+    </div>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">An item</li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-  </ul>
-</div>
 </template>
-<style scoped>
-  #pokemon {
-    height: 10rem;
-    width: 10rem;
-    padding: 10px;
+
+<script>
+import {toRefs} from 'vue'
+export default {
+  title:"pokeomCard",
+  props: {
+    pokemon: Object,
+    onSave: Function,
+    onOtherPokemon: Function
+  },
+  setup(props){
+    const {pokemon} = toRefs(props)
+    console.log(pokemon.value)
   }
-</style>
+}
+</script>
