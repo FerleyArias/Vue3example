@@ -5,7 +5,10 @@
       <h5 class="card-title">{{pokemon.name.english}}</h5>
       <p class="card-text">{{pokemon.description}}</p>
     </div>
-    <div class="card-body d-flex justify-content-between">
+    <div v-if="isList" class="card-body d-flex justify-content-center">
+      <button @click="onRemove(index)" class="btn btn-danger">Eliminar</button>
+    </div>
+    <div v-else class="card-body d-flex justify-content-between">
       <button @click="onSave" class="btn btn-success">Guardar</button>
       <button @click="onOtherPokemon" class="btn btn-primary">Siguiente</button>
     </div>
@@ -18,7 +21,10 @@ export default {
   props: {
     pokemon: Object,
     onSave: Function,
-    onOtherPokemon: Function
+    onOtherPokemon: Function,
+    index: Number,
+    isList: Boolean,
+    onRemove: Function
   },
   setup(props){
     const {pokemon} = toRefs(props)

@@ -4,7 +4,9 @@ import mutations from './mutations'
 
 const state = {
   actualPokemon: null,
-  savePokemon: []
+  savePokemon: [],
+  loading: false,
+  error: null
 }
 
 export default createStore({

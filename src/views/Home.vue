@@ -1,6 +1,13 @@
 <template>
   <div>
-    <Card v-if="actualPokemon" :pokemon="actualPokemon" :onOtherPokemon="getPokemon" :onSave="savePokemon"/>
+    <div 
+      v-if="loading || !actualPokemon" 
+      class="spinner-border text-danger m-auto absolute top-0 left-0 right-0 bottom-0" 
+      role="status"
+    >
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <Card v-else :pokemon="actualPokemon" :onOtherPokemon="getPokemon" :onSave="savePokemon"/>
   </div>
 </template>
 
@@ -16,6 +23,7 @@ export default {
   setup(){
     const store = useStore()
     const actualPokemon = computed(()=>store.state.actualPokemon)
+    const loading = computed(()=>store.state.loading)
     const getPokemon = () => store.dispatch("getPokemon");
     const savePokemon = () => {
       store.dispatch("setSavePokemon")
@@ -27,7 +35,8 @@ export default {
     return {
       actualPokemon,
       getPokemon,
-      savePokemon
+      savePokemon,
+      loading
     }
   }
 }

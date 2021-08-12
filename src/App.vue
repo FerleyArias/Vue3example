@@ -9,17 +9,17 @@
       />
     </li>
     <li class="nav-item">
-      <router-link :class="`nav-link ${path === '/'? 'bg-danger text-white':'bg-light text-danger'}`" to="/"
+      <router-link :class="[path === '/'? 'bg-danger text-white':'bg-light text-danger']" class="nav-link" to="/"
         >Pokémon</router-link
       >
     </li>
     <li class="nav-item">
-      <router-link :class="`nav-link ${path === '/list'? 'bg-danger text-white':'bg-light text-danger'} ml-10`" to="/list"
+      <router-link :class="[path === '/list'? 'bg-danger text-white':'bg-light text-danger']" class="nav-link ml-10" to="/list"
         >Lista Pokémon</router-link
       >
     </li>
   </ul>
-  <div class="m-0 vh-100 row justify-content-center align-items-center">
+  <div class="pt-5 d-flex justify-content-center align-items-center min-vh-100 overflow-hidden">
     <router-view class="col-auto p-5" />
   </div>
 </template>
@@ -36,7 +36,7 @@ export default {
     watch(route, ()=>{
       path.value=route.path
     })
-    onMounted(()=> {
+    onMounted(()=> { 
       lookPokemon()
     })
     return {
@@ -50,7 +50,6 @@ export default {
 #principal {
   height: 2.5rem;
   width: 2.5rem;
-  margin-right: 10px;
 }
 
 li {
@@ -58,8 +57,15 @@ li {
 }
 
 .my-nav {
-  margin-top: 30px;
-  left: 50%;
-  transform: translate(-50%, 0);
+  margin: 0 auto;
+  padding: 19px;
+  width: max-content;
+  border-radius: 0 0 15px 15px;
+  background-color: rgba(200, 200, 200, 0.3);
+  z-index: 10;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
 }
 </style>
