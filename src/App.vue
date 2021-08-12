@@ -9,41 +9,60 @@
       />
     </li>
     <li class="nav-item">
-      <router-link :class="[path === '/'? 'bg-danger text-white':'bg-light text-danger']" class="nav-link" to="/"
+      <router-link
+        :class="[
+          path === '/' ? 'bg-danger text-white' : 'bg-light text-danger',
+        ]"
+        class="nav-link"
+        to="/"
         >Pokémon</router-link
       >
     </li>
     <li class="nav-item">
-      <router-link :class="[path === '/list'? 'bg-danger text-white':'bg-light text-danger']" class="nav-link ml-10" to="/list"
+      <router-link
+        :class="[
+          path === '/list' ? 'bg-danger text-white' : 'bg-light text-danger',
+        ]"
+        class="nav-link ml-10"
+        to="/list"
         >Lista Pokémon</router-link
       >
     </li>
   </ul>
-  <div class="pt-5 d-flex justify-content-center align-items-center min-vh-100 overflow-hidden">
+  <div
+    class="
+      pt-5
+      d-flex
+      justify-content-center
+      align-items-center
+      min-vh-100
+      overflow-hidden
+    "
+  >
     <router-view class="col-auto p-5" />
   </div>
 </template>
 <script>
-import {watch, ref, onMounted} from 'vue'
-import {useStore} from 'vuex'
+import { watch, ref, onMounted } from "vue";
+import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 export default {
-  setup(){
-    const store = useStore()
+  setup() {
+    const store = useStore();
     const lookPokemon = () => store.dispatch("getSavePokemon");
-    const route = useRoute()
-    const path = ref("/")
-    watch(route, ()=>{
-      path.value=route.path
-    })
-    onMounted(()=> { 
-      lookPokemon()
-    })
+    const route = useRoute();
+    const path = ref("/");
+    watch(route, () => {
+      path.value = route.path;
+    });
+    onMounted(() => {
+      lookPokemon();
+    });
     return {
       path,
-      lookPokemon
-    }
-  }
+      lookPokemon,
+    };
+  },
 };
 </script>
 <style scoped>

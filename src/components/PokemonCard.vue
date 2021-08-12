@@ -1,9 +1,13 @@
 <template>
-  <div class="card mx-auto" style="width: 18rem;">
-    <img :src="pokemon.thumbnail" class="card-img-top m-auto w-75 p-3" alt="Pokemon">
+  <div class="card mx-auto" style="width: 18rem">
+    <img
+      :src="pokemon.thumbnail"
+      class="card-img-top m-auto w-75 p-3"
+      alt="Pokemon"
+    />
     <div class="card-body">
-      <h5 class="card-title">{{pokemon.name.english}}</h5>
-      <p class="card-text">{{pokemon.description}}</p>
+      <h5 class="card-title">{{ pokemon.name.english }}</h5>
+      <p class="card-text">{{ pokemon.description }}</p>
     </div>
     <div v-if="isList" class="card-body d-flex justify-content-center">
       <button @click="onRemove(index)" class="btn btn-danger">Eliminar</button>
@@ -16,7 +20,7 @@
 </template>
 
 <script>
-import {toRefs} from 'vue'
+import { toRefs } from "vue";
 export default {
   props: {
     pokemon: Object,
@@ -24,11 +28,11 @@ export default {
     onOtherPokemon: Function,
     index: Number,
     isList: Boolean,
-    onRemove: Function
+    onRemove: Function,
   },
-  setup(props){
-    const {pokemon} = toRefs(props)
-    console.log(pokemon.value)
-  }
-}
+  setup(props) {
+    const { pokemon } = toRefs(props);
+    console.log(pokemon.value);
+  },
+};
 </script>
