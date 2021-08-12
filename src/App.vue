@@ -9,12 +9,12 @@
       />
     </li>
     <li class="nav-item">
-      <router-link class="nav-link bg-danger text-white" to="/"
+      <router-link :class="`nav-link ${path === '/'? 'bg-danger text-white':'bg-light text-danger'}`" to="/"
         >Pokémon</router-link
       >
     </li>
     <li class="nav-item">
-      <router-link class="nav-link bg-light text-danger ml-10" to="/list"
+      <router-link :class="`nav-link ${path === '/list'? 'bg-danger text-white':'bg-light text-danger'} ml-10`" to="/list"
         >Lista Pokémon</router-link
       >
     </li>
@@ -24,7 +24,27 @@
   </div>
 </template>
 <script>
-export default {};
+import {watch, ref, onMounted} from 'vue'
+import {useStore} from 'vuex'
+import { useRoute } from "vue-router";
+export default {
+  setup(){
+    const store = useStore()
+    const lookPokemon = () => store.dispatch("getSavePokemon");
+    const route = useRoute()
+    const path = ref("/")
+    watch(route, ()=>{
+      path.value=route.path
+    })
+    onMounted(()=> {
+      lookPokemon()
+    })
+    return {
+      path,
+      lookPokemon
+    }
+  }
+};
 </script>
 <style scoped>
 #principal {

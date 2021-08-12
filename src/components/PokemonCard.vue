@@ -15,7 +15,6 @@
 <script>
 import {toRefs} from 'vue'
 export default {
-  title:"pokeomCard",
   props: {
     pokemon: Object,
     onSave: Function,
