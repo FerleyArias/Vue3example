@@ -9,8 +9,8 @@
       <h5 class="card-title">{{ pokemon.name.english }}</h5>
       <p class="card-text">{{ pokemon.description }}</p>
     </div>
-    <div v-if="isList" class="card-body d-flex justify-content-center">
-      <button @click="onRemove(index)" class="btn btn-danger">Eliminar</button>
+    <div v-if="isList" class="card-body d-flex justify-content-center align-items-end">
+      <button @click="onRemove(index)" class="btn btn-danger btn--removed">Eliminar</button>
     </div>
     <div v-else class="card-body d-flex justify-content-between">
       <button @click="onSave" class="btn btn-success">Guardar</button>
@@ -36,3 +36,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.btn--removed {
+  height: min-content;
+}
+</style>
